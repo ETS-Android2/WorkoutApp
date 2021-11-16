@@ -8,7 +8,7 @@ package com.patrickbanez.workoutapp.Workout;
 import java.util.Iterator;
 import java.util.*;
 
-class Workout implements Iterable<Exercise> {
+public class Workout implements Iterable<Exercise> {
     private final int MAX_EXERCISES = 100;
     private ArrayList<Exercise> exercises;
     private String workoutType;
