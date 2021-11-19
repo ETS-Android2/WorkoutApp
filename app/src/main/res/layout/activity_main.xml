@@ -32,8 +32,9 @@
             <ImageButton
                 android:id="@+id/homeButton"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="102dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:contentDescription="@string/home_button"
                 android:focusableInTouchMode="true"
                 android:onClick="swapFragment"
@@ -44,8 +45,9 @@
             <ImageButton
                 android:id="@+id/workoutButton"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="107dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="swapFragment"
                 android:scaleType="fitCenter"
                 android:src="@drawable/barbell_fill"
@@ -54,8 +56,9 @@
             <ImageButton
                 android:id="@+id/statisticsButton"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="81dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="swapFragment"
                 android:scaleType="fitCenter"
                 android:src="@drawable/analytics_fill"
@@ -64,13 +67,14 @@
             <ImageButton
                 android:id="@+id/settingsButton"
                 style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:scaleType="fitCenter"
                 android:onClick="swapFragment"
                 tools:ignore="UsingOnClickInXml"
-                android:src="@drawable/settings" />
+                android:src="@drawable/settings"
+                android:contentDescription="@string/statistics_button"/>
         </LinearLayout>
 
     </LinearLayout>
