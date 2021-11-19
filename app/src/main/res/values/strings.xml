@@ -63,5 +63,6 @@
     <string name="btn">Button</string>
     <string name="string_btn">btn</string>
     <string name="button">Button</string>
+    <string name="search_button">search_button</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

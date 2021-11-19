@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void swapFragment(View v) {
         if (v.getId() == R.id.homeButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, workout, null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, home, null).commit();
             setTitle(tabNames[0]);
 //            Intent home =  new Intent(this, CreateUserActivity.class);
 //            startActivity(home);
