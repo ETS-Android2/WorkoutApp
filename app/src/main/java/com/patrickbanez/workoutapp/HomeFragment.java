@@ -39,21 +39,15 @@ public class HomeFragment extends Fragment {
 		pause_button = (ImageButton) view.findViewById(R.id.pause_button);
 
 
-		play_button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				mediaPlayer = MediaPlayer.create(getContext(),R.raw.music);
-				mediaPlayer.start();
-			}
+		play_button.setOnClickListener(view1 -> {
+			mediaPlayer = MediaPlayer.create(getContext(),R.raw.music);
+			mediaPlayer.start();
 		});
 
-		pause_button.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if(mediaPlayer.isPlaying()) {
-					mediaPlayer.stop();
-					mediaPlayer.reset();
-				}
+		pause_button.setOnClickListener(view12 -> {
+			if(mediaPlayer.isPlaying()) {
+				mediaPlayer.stop();
+				mediaPlayer.reset();
 			}
 		});
 		return view;
