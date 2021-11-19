@@ -1,68 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    android:layout_height="match_parent">
 
-    <FrameLayout
-        android:id="@+id/frame"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Home Fragmenet" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-
-        >
-        <ImageButton
-            android:id="@+id/homeButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:contentDescription="@string/home_button"
-            android:focusableInTouchMode="true"
-            android:onClick="swapFragment"
-            android:scaleType="fitCenter"
-            android:src="@drawable/home_fill"
-            tools:ignore="UsingOnClickInXml" />
-
-        <ImageButton
-            android:id="@+id/workoutButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="swapFragment"
-            android:scaleType="fitCenter"
-            android:src="@drawable/barbell_fill"
-            tools:ignore="UsingOnClickInXml"
-            android:contentDescription="@string/workout_button" />
-
-        <ImageButton
-            android:id="@+id/statisticsButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="swapFragment"
-            android:scaleType="fitCenter"
-            android:src="@drawable/analytics_fill"
-            tools:ignore="UsingOnClickInXml"
-            android:contentDescription="@string/statistics_button" />
-
-        <ImageButton
-            android:id="@+id/settingsButton"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="fitCenter"
-            android:onClick="swapFragment"
-            tools:ignore="UsingOnClickInXml"
-            android:src="@drawable/settings"
-            android:contentDescription="@string/settings_button" />
-    </LinearLayout>
-</RelativeLayout>
+</FrameLayout>

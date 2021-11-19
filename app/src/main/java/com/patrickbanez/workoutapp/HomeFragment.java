@@ -3,6 +3,8 @@ package com.patrickbanez.workoutapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
@@ -21,27 +23,15 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends AppCompatActivity {
+public class HomeFragment extends Fragment {
 
-	ImageButton Home,Workout,Statistics,Setting;
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public HomeFragment() {
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.fragment_home);
-
-		Home = (ImageButton)findViewById(R.id.homeButton);
-		Workout = (ImageButton)findViewById(R.id.workoutButton);
-		Statistics = (ImageButton)findViewById(R.id.statisticsButton);
-		Setting = (ImageButton)findViewById(R.id.settingsButton);
-
-		Home.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-				Fragment fragment1 = new Fragment();
-			}
-		});
 	}
 
+	@Nullable
+	@Override
+	public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		return inflater.inflate(R.layout.fragment_home, container, false);
+	}
 }
