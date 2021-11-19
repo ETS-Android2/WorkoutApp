@@ -4,12 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     String[] tabNames = {"Home", "Workout", "Statistics", "Settings"};
-
+    TextView dayText;
+    ImageButton search_button;
     private static HomeFragment home;
     private static WorkoutFragment workout;
     private static StatisticsFragment statistics;
@@ -28,7 +36,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Date currentTime = Calendar.getInstance().getTime();
+        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentTime);
 
+
+        dayText = findViewById(R.id.dayText);
+        dayText.setText(formattedDate);
+        search_button = findViewById(R.id.search_button);
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CreateUserActivity.class);
+                startActivity(intent); // move to exercise activity
+            }
+        });
         // Hiding the title bar. I'll add it again when I can figure out how to resize it using XML file -- It's huge default
         setTitle(tabNames[0]);
     }
