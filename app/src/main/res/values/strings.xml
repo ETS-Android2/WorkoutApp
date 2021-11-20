@@ -60,5 +60,8 @@
     </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn">button</string>
+    <string name="search_button">Search_button</string>
+    <string name="textview">TextView</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>
