@@ -1,5 +1,6 @@
 package com.patrickbanez.workoutapp;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class HomeFragment extends Fragment {
 	ImageButton play_button;
 	ImageButton pause_button;
 	MediaPlayer mediaPlayer;
+	ImageButton exercise_button;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 	                         Bundle savedInstanceState) {
@@ -37,6 +39,11 @@ public class HomeFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_home,container,false);
 		play_button = (ImageButton) view.findViewById(R.id.play_button);
 		pause_button = (ImageButton) view.findViewById(R.id.pause_button);
+		exercise_button = (ImageButton) view.findViewById(R.id.exercise_button);
+		exercise_button.setOnClickListener(view13 -> {
+			Intent intent = new Intent(getContext(), CreateUserActivity.class);
+			startActivity(intent);
+		});
 
 
 		play_button.setOnClickListener(view1 -> {
