@@ -29,6 +29,7 @@ public class LoadingActivity extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(startApplication);
+                finish();
             }
         }, 3000); // for now it waits 3 seconds then goes to MainActivity
     }

@@ -9,11 +9,16 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends Fragment {
+
+    private View view;
+    private Button btn;
+    private ProfileFragment profile;
 
     public HomeFragment() {
 

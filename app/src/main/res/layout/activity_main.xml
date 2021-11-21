@@ -1,64 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
+    <TextView
+        android:id="@+id/dayText"
+        android:layout_width="272dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="8dp"
+
+        android:layout_marginTop="16dp"
+        android:text="@string/textview"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/search_button"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:minHeight="48dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search"
+        app:layout_constraintBottom_toTopOf="@+id/activeView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dayText"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/activeView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <ImageButton
-                android:id="@+id/search_button"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/search_button"
-                android:maxWidth="50dp"
-                android:maxHeight="50dp"
-                android:minHeight="48dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/search"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.89"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-            <TextView
-                android:id="@+id/dayText"
-                android:layout_width="272dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/textview"
-
-                android:textSize="20sp"
-                app:layout_constraintEnd_toStartOf="@+id/search_button"
-                app:layout_constraintHorizontal_bias="0.25"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </FrameLayout>
+        android:name="com.patrickbanez.workoutapp.HomeFragment"
+        android:layout_width="409dp"
+        android:layout_height="632dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayText" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
 
-        >
+        android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activeView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
         <ImageButton
             android:id="@+id/homeButton"
             style="?android:attr/buttonBarButtonStyle"
@@ -78,11 +82,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/workout_button"
             android:onClick="swapFragment"
             android:scaleType="fitCenter"
             android:src="@drawable/barbell_fill"
-            tools:ignore="UsingOnClickInXml"
-            android:contentDescription="@string/workout_button" />
+            tools:ignore="UsingOnClickInXml" />
 
         <ImageButton
             android:id="@+id/statisticsButton"
@@ -90,11 +94,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/statistics_button"
             android:onClick="swapFragment"
             android:scaleType="fitCenter"
             android:src="@drawable/analytics_fill"
-            tools:ignore="UsingOnClickInXml"
-            android:contentDescription="@string/statistics_button" />
+            tools:ignore="UsingOnClickInXml" />
 
         <ImageButton
             android:id="@+id/settingsButton"
@@ -102,10 +106,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:scaleType="fitCenter"
+            android:contentDescription="@string/settings_button"
             android:onClick="swapFragment"
-            tools:ignore="UsingOnClickInXml"
+            android:scaleType="fitCenter"
             android:src="@drawable/settings"
-            android:contentDescription="@string/settings_button" />
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

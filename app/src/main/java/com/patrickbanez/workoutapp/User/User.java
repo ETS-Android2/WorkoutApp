@@ -2,7 +2,6 @@ package com.patrickbanez.workoutapp.User;
 
 public class User {
     private String firstName, lastName, email;
-    private String uid;
     private int heightFt, heightIn, age;
     private double weight;
     private Goal goal;
@@ -17,14 +16,12 @@ public class User {
      * @param firstName
      * @param lastName
      * @param email
-     * @param uid generated from CreateUserActivity
      */
-    public User(String firstName, String lastName, String email, Goal goal, String uid) {
+    public User(String firstName, String lastName, String email, Goal goal) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.goal = goal;
-        this.uid = uid;
         age = 0;
         heightFt = 0;
         heightIn = 0;
@@ -53,14 +50,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getUid() {
-        return uid;
-    }
-
-    public void setUid(String uid) {
-        this.uid = uid;
     }
 
     public int getHeightFt() {
