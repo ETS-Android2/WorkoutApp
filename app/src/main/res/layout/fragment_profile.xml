@@ -8,17 +8,17 @@
 
     <RadioGroup
         android:id="@+id/goalsProfile"
-        android:layout_width="151dp"
-        android:layout_height="184dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:checkedButton="@id/weightLossRadio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/guidelineBottomField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
         app:layout_constraintTop_toBottomOf="@+id/weightProfile">
 
         <RadioButton
             android:id="@+id/weightLossProfile"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusableInTouchMode="false"
             android:text="@string/weight_loss_text" />
@@ -49,15 +49,14 @@
 
     <ImageView
         android:id="@+id/profilePicture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:src="@android:drawable/btn_star_big_on"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineBottomProfile"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightProfile"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftProfile"
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontalTop"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="ImageContrastCheck" />
 
@@ -65,79 +64,101 @@
         android:id="@+id/nameProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/name_text"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineNameField"
         app:layout_constraintEnd_toStartOf="@+id/nameProfile"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineBottomProfile" />
 
     <EditText
         android:id="@+id/nameProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineNameField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profilePicture"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
+        app:layout_constraintTop_toBottomOf="@+id/guidelineBottomProfile"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+    <EditText
+    android:id="@+id/firstNameProfile"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:hint="@string/first_name_text"
+    app:layout_constraintBottom_toTopOf="@+id/guidelineNameField"
+    app:layout_constraintEnd_toStartOf="@id/lastNameProfile"
+    app:layout_constraintStart_toStartOf="@+id/guidelineLeftField"
+    app:layout_constraintTop_toTopOf="@+id/guidelineBottomProfile" />
+
+    <EditText
+        android:id="@+id/lastNameProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/last_name_text"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineNameField"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRightField"
+        app:layout_constraintStart_toEndOf="@id/firstNameProfile"
+        app:layout_constraintTop_toBottomOf="@id/guidelineBottomProfile" />
 
     <EditText
         android:id="@+id/emailProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineEmailField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
         app:layout_constraintTop_toBottomOf="@+id/nameProfile"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/ageProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineAgeField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
         app:layout_constraintTop_toBottomOf="@+id/emailProfile"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/heightProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHeightField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
         app:layout_constraintTop_toBottomOf="@+id/ageProfile"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/weightProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineWeightField"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRightField"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftField"
         app:layout_constraintTop_toBottomOf="@+id/heightProfile"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -145,51 +166,45 @@
         android:id="@+id/emailProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/email_text"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineEmailField"
         app:layout_constraintEnd_toStartOf="@+id/emailProfile"
-        app:layout_constraintTop_toBottomOf="@+id/nameProfileText" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineNameField" />
 
     <TextView
         android:id="@+id/ageProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/age_text"
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineAgeField"
         app:layout_constraintEnd_toStartOf="@+id/ageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/emailProfileText" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineEmailField" />
 
     <TextView
         android:id="@+id/heightProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/height_text"
-        app:layout_constraintEnd_toStartOf="@+id/ageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/ageProfileText" />
+        app:layout_constraintBottom_toBottomOf="@+id/guidelineHeightField"
+        app:layout_constraintEnd_toStartOf="@+id/heightProfile"
+        app:layout_constraintTop_toTopOf="@+id/guidelineAgeField" />
 
     <TextView
         android:id="@+id/weightProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/weight_text"
-        app:layout_constraintEnd_toStartOf="@+id/ageProfile"
-        app:layout_constraintTop_toBottomOf="@+id/heightProfileText" />
+        app:layout_constraintBottom_toBottomOf="@id/guidelineWeightField"
+        app:layout_constraintEnd_toStartOf="@+id/weightProfile"
+        app:layout_constraintTop_toTopOf="@+id/guidelineHeightField" />
 
     <TextView
         android:id="@+id/goalsProfileText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="4dp"
         android:text="@string/goals_profile_text"
         app:layout_constraintEnd_toStartOf="@+id/goalsProfile"
-        app:layout_constraintTop_toBottomOf="@+id/weightProfileText" />
+        app:layout_constraintTop_toTopOf="@+id/goalsProfile" />
 
     <ImageButton
         android:id="@+id/editProfileButton"
@@ -199,58 +214,160 @@
         android:layout_marginEnd="32dp"
         android:scaleType="fitCenter"
         android:src="@drawable/edit_kirill_kazachek"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guidelineVerticalRight"
+        app:layout_constraintTop_toTopOf="@id/guidelineHorizontalTop"
         tools:ignore="SpeakableTextPresentCheck,UsingOnClickInXml" />
 
     <Button
         android:id="@+id/saveProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/save_text"
         android:visibility="invisible"
-        app:layout_constraintEnd_toStartOf="@+id/cancelProfileButton"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/goalsProfile" />
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintEnd_toStartOf="@id/cancelProfileButton"
+        app:layout_constraintStart_toEndOf="@id/guidelineLeftField"
+        app:layout_constraintTop_toBottomOf="@id/guidelineBottomField" />
 
     <Button
         android:id="@+id/cancelProfileButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="@string/cancel_text"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/saveProfileButton"
-        app:layout_constraintTop_toBottomOf="@+id/goalsProfile" />
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHorizontalBottom"
+        app:layout_constraintTop_toBottomOf="@id/guidelineBottomField"
+        app:layout_constraintStart_toEndOf="@id/saveProfileButton"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField" tools:layout_editor_absoluteX="207dp" />
 
     <EditText
         android:id="@+id/heightFtProfile"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:ems="10"
         android:hint="@string/feet_text"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toEndOf="@+id/heightProfileText"
-        app:layout_constraintTop_toBottomOf="@+id/ageProfile" />
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHeightField"
+        app:layout_constraintEnd_toStartOf="@id/heightInProfile"
+        app:layout_constraintStart_toEndOf="@+id/guidelineLeftField"
+        app:layout_constraintTop_toTopOf="@+id/guidelineAgeField" />
 
     <EditText
         android:id="@+id/heightInProfile"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/inch_text"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@id/guidelineHeightField"
+        app:layout_constraintEnd_toEndOf="@id/guidelineRightField"
         app:layout_constraintStart_toEndOf="@+id/heightFtProfile"
-        app:layout_constraintTop_toBottomOf="@+id/ageProfile" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineAgeField" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineVerticalRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeftProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.375" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRightProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.625" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeftField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRightField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineNameField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.23" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineEmailField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.31" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineAgeField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.39" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHeightField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineWeightField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

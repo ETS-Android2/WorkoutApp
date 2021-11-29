@@ -16,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.patrickbanez.workoutapp.User.Goal;
 import com.patrickbanez.workoutapp.User.User;
 
 import java.util.regex.Matcher;
@@ -27,7 +28,8 @@ import java.util.regex.Pattern;
 public class ProfileFragment extends Fragment{
 
     private View view;
-    private EditText name, email, age, height, heightInProfile, heightFtProfile, weight;
+    private EditText name, firstNameProfile, lastNameProfile, email, age, height, heightInProfile,
+            heightFtProfile, weight;
     private RadioGroup goals;
     private User user;
     private ImageButton editProfileButton;
@@ -68,6 +70,8 @@ public class ProfileFragment extends Fragment{
 
     private void getFields() {
         name = view.findViewById(R.id.nameProfile);
+        firstNameProfile = view.findViewById(R.id.firstNameProfile);
+        lastNameProfile = view.findViewById(R.id.lastNameProfile);
         email = view.findViewById(R.id.emailProfile);
         age = view.findViewById(R.id.ageProfile);
         height = view.findViewById(R.id.heightProfile);
@@ -84,6 +88,12 @@ public class ProfileFragment extends Fragment{
     }
 
     private void initFields() {
+        cancelButton.setVisibility(View.INVISIBLE);
+        saveButton.setVisibility(View.INVISIBLE);
+        height.setVisibility(View.VISIBLE);
+        name.setVisibility(View.VISIBLE);
+        firstNameProfile.setVisibility(View.INVISIBLE);
+        lastNameProfile.setVisibility(View.INVISIBLE);
         heightInProfile.setVisibility(View.INVISIBLE);
         heightFtProfile.setVisibility(View.INVISIBLE);
         name.setText(user.getFirstName() + " " + user.getLastName());
@@ -104,12 +114,18 @@ public class ProfileFragment extends Fragment{
         }
         if(user.getAge() > 0) {
             age.setText(user.getAge() + "");
+        } else {
+            age.setText("");
         }
         if(user.getHeightFt() > 0 || user.getHeightIn() > 0) {
             height.setText(user.getHeightFt() + "'" + user.getHeightIn() + "\"");
+        } else {
+            height.setText("");
         }
         if(user.getWeight() > 0.0) {
             weight.setText(user.getWeight() + " lbs");
+        } else {
+            weight.setText("");
         }
     }
 
@@ -117,9 +133,18 @@ public class ProfileFragment extends Fragment{
         editProfileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firstNameProfile.setVisibility(View.VISIBLE);
+                lastNameProfile.setVisibility(View.VISIBLE);
+                name.setVisibility(View.INVISIBLE);
                 heightInProfile.setVisibility(View.VISIBLE);
                 heightFtProfile.setVisibility(View.VISIBLE);
                 height.setVisibility(View.INVISIBLE);
+                firstNameProfile.setText(user.getFirstName());
+                lastNameProfile.setText(user.getLastName());
+                weight.setText(user.getWeight() + "");
+                age.setText(user.getAge() + "");
+                heightFtProfile.setText(user.getHeightFt() + "");
+                heightInProfile.setText(user.getHeightIn() + "");
                 setDefaultBackground();
                 setFocusTrue();
                 saveButton.setVisibility(View.VISIBLE);
@@ -136,7 +161,6 @@ public class ProfileFragment extends Fragment{
                 setFocusFalse();
                 cancelButton.setVisibility(View.INVISIBLE);
                 saveButton.setVisibility(View.INVISIBLE);
-                height.setVisibility(View.VISIBLE);
                 editProfileButton.setClickable(true);
                 setNullBackground();
             }
@@ -147,53 +171,67 @@ public class ProfileFragment extends Fragment{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newName = name.getText().toString().trim();
-                int spaceLocation = 0;
-                for (int i = 0; i < newName.length(); i++) {
-                    if (newName.charAt(i) == ' ' && newName.charAt(i + 1) != ' ') {
-                        spaceLocation = i;
-                        break;
-                    }
-                }
-                if (spaceLocation == 0) {
-                    Toast.makeText(getContext(), "Please enter your last name", Toast.LENGTH_SHORT).show();
+                String newFirst = firstNameProfile.getText().toString();
+                String newLast = lastNameProfile.getText().toString();
+                if (newFirst.equals("") || newLast.equals("")) {
+                    Toast.makeText(getContext(), "Please enter your first and last name",
+                            Toast.LENGTH_SHORT).show();
                     return;
                 }
-                user.setFirstName((String) newName.subSequence(0, spaceLocation));
-                user.setLastName((String) newName.subSequence(spaceLocation + 1, newName.length()));
+                user.setFirstName(newFirst);
+                user.setLastName(newLast);
                 if (!isEmailValid(email.getText().toString())) {
                     Toast.makeText(getContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                RadioButton selectedGoal = (RadioButton) view.findViewById(goals.getCheckedRadioButtonId());
+                // current user goal
+                Goal goal = user.getGoal();
+                if (selectedGoal.getText().toString().equals(getString(R.string.weight_loss_text))) {
+                    goal = Goal.WEIGHT_LOSS;
+                } else if (selectedGoal.getText().toString().equals(getString(R.string.muscle_building_text))) {
+                    goal = Goal.MUSCLE_BUILDING;
+                } else if (selectedGoal.toString().equals(getString(R.string.strength_building_text))) {
+                    goal = Goal.STRENGTH_BUILDING;
+                } else {
+                    goal = Goal.MAINTENANCE;
+                }
+                user.setGoal(goal);
                 // Add optional fields to the new user
                 String temp = age.getText().toString();
                 if (!temp.equals("")) {
                     int age = Integer.parseInt(temp);
                     user.setAge(age);
+                } else {
+                    user.setAge(0);
                 }
 
                 temp = heightFtProfile.getText().toString();
                 if (!temp.equals("")) {
                     int heightFt = Integer.parseInt(temp);
                     user.setHeightFt(heightFt);
+                } else {
+                    user.setHeightFt(0);
                 }
 
                 temp = heightInProfile.getText().toString();
                 if (!temp.equals("")) {
                     int heightIn = Integer.parseInt(temp);
                     user.setHeightIn(heightIn);
+                } else {
+                    user.setHeightIn(0);
                 }
 
                 temp = weight.getText().toString();
                 if (!temp.equals("")) {
                     double weight = Double.parseDouble(temp);
                     user.setWeight(weight);
+                } else {
+                    user.setWeight(0.0);
                 }
+
                 initFields();
                 setFocusFalse();
-                cancelButton.setVisibility(View.INVISIBLE);
-                saveButton.setVisibility(View.INVISIBLE);
-                height.setVisibility(View.VISIBLE);
                 editProfileButton.setClickable(true);
                 setNullBackground();
             }
@@ -246,6 +284,8 @@ public class ProfileFragment extends Fragment{
 
     private void setInputType() {
         name.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+        firstNameProfile.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
+        lastNameProfile.setInputType(InputType.TYPE_TEXT_VARIATION_PERSON_NAME);
         email.setInputType(InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
         age.setInputType(InputType.TYPE_CLASS_NUMBER);
         height.setInputType(InputType.TYPE_CLASS_NUMBER);
