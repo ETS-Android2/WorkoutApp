@@ -1,7 +1,5 @@
 package com.patrickbanez.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,8 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.patrickbanez.workoutapp.User.Goal;
-import com.patrickbanez.workoutapp.User.User;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,7 +95,7 @@ public class CreateUserActivity extends AppCompatActivity {
         } else {
             goal = Goal.MAINTENANCE;
         }
-        User newUser = new User(firstName, lastName, email, goal);
+        User newUser = new User(firstName, lastName, email);
 
         // Verify user was created
         if (newUser != null && newUser.getFirstName().equals(firstName) && newUser.getLastName().equals(lastName)
@@ -131,7 +128,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
         temp = weightField.getText().toString();
         if (!temp.equals("")) {
-            double weight = Double.parseDouble(temp);
+            int weight = Integer.parseInt(temp);
             newUser.setWeight(weight);
         }
 

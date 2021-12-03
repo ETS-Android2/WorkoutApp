@@ -2,9 +2,6 @@ package com.patrickbanez.workoutapp;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.patrickbanez.workoutapp.User.Goal;
-import com.patrickbanez.workoutapp.User.User;
+import androidx.fragment.app.Fragment;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -98,20 +94,20 @@ public class ProfileFragment extends Fragment{
         heightFtProfile.setVisibility(View.INVISIBLE);
         name.setText(user.getFirstName() + " " + user.getLastName());
         email.setText(user.getEmail());
-        switch(user.getGoal()) {
-            case MUSCLE_BUILDING:
-                ((RadioButton) goals.findViewById(R.id.muscleBuildingProfile)).setChecked(true);
-                break;
-            case STRENGTH_BUILDING:
-                ((RadioButton) goals.findViewById(R.id.strengthBuildingProfile)).setChecked(true);
-                break;
-            case MAINTENANCE:
-                ((RadioButton) goals.findViewById(R.id.maintenanceProfile)).setChecked(true);
-                break;
-            default :
-                ((RadioButton) goals.findViewById(R.id.weightLossProfile)).setChecked(true);
-                break;
-        }
+//        switch(user.getGoal()) {
+//            case MUSCLE_BUILDING:
+//                ((RadioButton) goals.findViewById(R.id.muscleBuildingProfile)).setChecked(true);
+//                break;
+//            case STRENGTH_BUILDING:
+//                ((RadioButton) goals.findViewById(R.id.strengthBuildingProfile)).setChecked(true);
+//                break;
+//            case MAINTENANCE:
+//                ((RadioButton) goals.findViewById(R.id.maintenanceProfile)).setChecked(true);
+//                break;
+//            default :
+//                ((RadioButton) goals.findViewById(R.id.weightLossProfile)).setChecked(true);
+//                break;
+//        }
         if(user.getAge() > 0) {
             age.setText(user.getAge() + "");
         } else {
@@ -186,17 +182,17 @@ public class ProfileFragment extends Fragment{
                 }
                 RadioButton selectedGoal = (RadioButton) view.findViewById(goals.getCheckedRadioButtonId());
                 // current user goal
-                Goal goal = user.getGoal();
-                if (selectedGoal.getText().toString().equals(getString(R.string.weight_loss_text))) {
-                    goal = Goal.WEIGHT_LOSS;
-                } else if (selectedGoal.getText().toString().equals(getString(R.string.muscle_building_text))) {
-                    goal = Goal.MUSCLE_BUILDING;
-                } else if (selectedGoal.toString().equals(getString(R.string.strength_building_text))) {
-                    goal = Goal.STRENGTH_BUILDING;
-                } else {
-                    goal = Goal.MAINTENANCE;
-                }
-                user.setGoal(goal);
+//                Goal goal = user.getGoal();
+//                if (selectedGoal.getText().toString().equals(getString(R.string.weight_loss_text))) {
+//                    goal = Goal.WEIGHT_LOSS;
+//                } else if (selectedGoal.getText().toString().equals(getString(R.string.muscle_building_text))) {
+//                    goal = Goal.MUSCLE_BUILDING;
+//                } else if (selectedGoal.toString().equals(getString(R.string.strength_building_text))) {
+//                    goal = Goal.STRENGTH_BUILDING;
+//                } else {
+//                    goal = Goal.MAINTENANCE;
+//                }
+//                user.setGoal(goal);
                 // Add optional fields to the new user
                 String temp = age.getText().toString();
                 if (!temp.equals("")) {
@@ -224,10 +220,10 @@ public class ProfileFragment extends Fragment{
 
                 temp = weight.getText().toString();
                 if (!temp.equals("")) {
-                    double weight = Double.parseDouble(temp);
+                    int weight = Integer.parseInt(temp);
                     user.setWeight(weight);
                 } else {
-                    user.setWeight(0.0);
+                    user.setWeight(0);
                 }
 
                 initFields();
