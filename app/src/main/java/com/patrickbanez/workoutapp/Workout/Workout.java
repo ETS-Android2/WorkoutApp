@@ -5,10 +5,12 @@
 
 package com.patrickbanez.workoutapp.Workout;
 
+import androidx.annotation.NonNull;
+
 import java.util.Iterator;
 import java.util.*;
 
-class Workout implements Iterable<Exercise> {
+public class Workout implements Iterable<Exercise> {
     private final int MAX_EXERCISES = 100;
     private ArrayList<Exercise> exercises;
     private String workoutType;
@@ -19,7 +21,7 @@ class Workout implements Iterable<Exercise> {
         this.name = "";
         description = "";
         workoutType = "";
-        exercises = new ArrayList<Exercise>();
+        exercises = new ArrayList<>();
     }
 
     public boolean addExercise(Exercise e) {
@@ -37,6 +39,10 @@ class Workout implements Iterable<Exercise> {
             }
         }
         return false;
+    }
+
+    public int getSize() {
+        return exercises.size();
     }
 
     public Exercise getExercise(int index) {
@@ -85,6 +91,7 @@ class Workout implements Iterable<Exercise> {
         return duration;
     }
 
+    @NonNull
     public WorkoutIterator iterator() {
         return new WorkoutIterator(this);
     }
