@@ -24,26 +24,8 @@ public class EditWorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
 
-        // Hiding the title bar. I'll add it again when I can figure out how to resize it using XML file -- It's huge default
-        setTitle(tabNames[0]);
+
     }
 
-    public void swapFragment(View v) {
-        if (v.getId() == R.id.homeButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, home, null).commit();
-            setTitle(tabNames[0]);
-        }
-        if (v.getId() == R.id.workoutButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, workout, null).commit();
-            setTitle(tabNames[1]);
-        }
-        if (v.getId() == R.id.statisticsButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, statistics, null).commit();
-            setTitle(tabNames[2]);
-        }
-        if (v.getId() == R.id.settingsButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, settings, null).commit();
-            setTitle(tabNames[3]);
-        }
-    }
+    private
 }
