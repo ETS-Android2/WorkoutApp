@@ -15,7 +15,7 @@ public class Exercise implements Iterable<Set> {
     //private int calories;
     //need to find/create a class to hold the time
     private int duration;
-    /private int caloriesPerRep;
+    //private int caloriesPerRep;
 
     public Exercise(String name) {
         //this.caloriesPerRep = caloriesPerRep;
@@ -65,6 +65,8 @@ public class Exercise implements Iterable<Set> {
     public Set getSet(int index) {
         return sets.get(index);
     }
+
+    public int getCount(){return sets.size();}
 
     public SetIterator iterator() {
         return new SetIterator(this);
