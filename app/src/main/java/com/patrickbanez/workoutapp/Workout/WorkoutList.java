@@ -6,7 +6,6 @@ import java.util.*;
 public class WorkoutList implements Iterable<Workout> {
     private final int MAX_WORKOUTS = 100;
     private ArrayList<Workout> workouts;
-    private int count;
 
     public WorkoutList() {
         workouts = new ArrayList<Workout>();
@@ -32,8 +31,6 @@ public class WorkoutList implements Iterable<Workout> {
     public Workout getWorkout(int index) {
         return workouts.get(index);
     }
-
-    public int getCount(){ return count;}
 
 
     public WorkoutListIterator iterator() {
