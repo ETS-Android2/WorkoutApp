@@ -1,5 +1,7 @@
 package com.patrickbanez.workoutapp;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
@@ -14,6 +16,8 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+
+import com.google.gson.Gson;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -31,6 +35,7 @@ public class ProfileFragment extends Fragment{
     private ImageButton editProfileButton;
     private Button saveButton, cancelButton;
     private Drawable defaultBackground;
+    private SharedPreferences sp;
 
     // User required to create profile
     private ProfileFragment() {
@@ -62,6 +67,7 @@ public class ProfileFragment extends Fragment{
         setSaveButton();
         initFields();
         setNullBackground();
+        sp = getActivity().getSharedPreferences("userPref", Context.MODE_PRIVATE);
     }
 
     private void getFields() {
@@ -94,20 +100,20 @@ public class ProfileFragment extends Fragment{
         heightFtProfile.setVisibility(View.INVISIBLE);
         name.setText(user.getFirstName() + " " + user.getLastName());
         email.setText(user.getEmail());
-//        switch(user.getGoal()) {
-//            case MUSCLE_BUILDING:
-//                ((RadioButton) goals.findViewById(R.id.muscleBuildingProfile)).setChecked(true);
-//                break;
-//            case STRENGTH_BUILDING:
-//                ((RadioButton) goals.findViewById(R.id.strengthBuildingProfile)).setChecked(true);
-//                break;
-//            case MAINTENANCE:
-//                ((RadioButton) goals.findViewById(R.id.maintenanceProfile)).setChecked(true);
-//                break;
-//            default :
-//                ((RadioButton) goals.findViewById(R.id.weightLossProfile)).setChecked(true);
-//                break;
-//        }
+        switch(user.getGoal()) {
+            case MUSCLE_BUILDING:
+                ((RadioButton) goals.findViewById(R.id.muscleBuildingProfile)).setChecked(true);
+                break;
+            case STRENGTH_BUILDING:
+                ((RadioButton) goals.findViewById(R.id.strengthBuildingProfile)).setChecked(true);
+                break;
+            case MAINTENANCE:
+                ((RadioButton) goals.findViewById(R.id.maintenanceProfile)).setChecked(true);
+                break;
+            default :
+                ((RadioButton) goals.findViewById(R.id.weightLossProfile)).setChecked(true);
+                break;
+        }
         if(user.getAge() > 0) {
             age.setText(user.getAge() + "");
         } else {
@@ -182,17 +188,17 @@ public class ProfileFragment extends Fragment{
                 }
                 RadioButton selectedGoal = (RadioButton) view.findViewById(goals.getCheckedRadioButtonId());
                 // current user goal
-//                Goal goal = user.getGoal();
-//                if (selectedGoal.getText().toString().equals(getString(R.string.weight_loss_text))) {
-//                    goal = Goal.WEIGHT_LOSS;
-//                } else if (selectedGoal.getText().toString().equals(getString(R.string.muscle_building_text))) {
-//                    goal = Goal.MUSCLE_BUILDING;
-//                } else if (selectedGoal.toString().equals(getString(R.string.strength_building_text))) {
-//                    goal = Goal.STRENGTH_BUILDING;
-//                } else {
-//                    goal = Goal.MAINTENANCE;
-//                }
-//                user.setGoal(goal);
+                Goal goal = user.getGoal();
+                if (selectedGoal.getText().toString().equals(getString(R.string.weight_loss_text))) {
+                    goal = Goal.WEIGHT_LOSS;
+                } else if (selectedGoal.getText().toString().equals(getString(R.string.muscle_building_text))) {
+                    goal = Goal.MUSCLE_BUILDING;
+                } else if (selectedGoal.toString().equals(getString(R.string.strength_building_text))) {
+                    goal = Goal.STRENGTH_BUILDING;
+                } else {
+                    goal = Goal.MAINTENANCE;
+                }
+                user.setGoal(goal);
                 // Add optional fields to the new user
                 String temp = age.getText().toString();
                 if (!temp.equals("")) {
@@ -225,6 +231,12 @@ public class ProfileFragment extends Fragment{
                 } else {
                     user.setWeight(0);
                 }
+
+                SharedPreferences.Editor prefEditor = sp.edit();
+                Gson gson = new Gson();
+                String json = gson.toJson(user);
+                prefEditor.putString("userData", json);
+                prefEditor.commit();
 
                 initFields();
                 setFocusFalse();

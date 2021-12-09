@@ -4,8 +4,11 @@ package com.patrickbanez.workoutapp;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
-public class User {
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class User implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int heightFt;
     private int heightIn;
@@ -16,7 +19,7 @@ public class User {
     private String email;
 
 
-//    private Goal goal;
+    private Goal goal;
 
     // User cannot be created without a first name, last name, email, goal, and uid.
     public User(){};
@@ -30,11 +33,11 @@ public class User {
      * @param lastName
      * @param email
      */
-    public User(String firstName, String lastName, String email) {
+    public User(String firstName, String lastName, String email, Goal goal) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-//        this.goal = goal;
+        this.goal = goal;
         age = 0;
         heightFt = 0;
         heightIn = 0;
@@ -97,12 +100,12 @@ public class User {
         this.weight = weight;
     }
 
-//    public void setGoal(Goal goal) {
-//        this.goal = goal;
-//    }
-//
-//    public Goal getGoal() {
-//        return goal;
-//    }
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+    }
+
+    public Goal getGoal() {
+        return goal;
+    }
 
 }

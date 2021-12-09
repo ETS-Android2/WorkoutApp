@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private UserDao mUserDao;
     String[] tabNames = {"Home", "Workout", "Statistics", "Settings"};
     TextView dayText;
     ImageButton search_button;
@@ -54,35 +53,6 @@ public class MainActivity extends AppCompatActivity {
         });
         // Hiding the title bar. I'll add it again when I can figure out how to resize it using XML file -- It's huge default
         setTitle(tabNames[0]);
-
-        UserDatabase database = Room.databaseBuilder(getApplicationContext(), UserDatabase.class, "WorkoutApp")
-                .fallbackToDestructiveMigration() // Be able to change schema version for after version.
-                .allowMainThreadQueries() // Be able to change DB IO(Input & output) in Main Thread
-                .build(); //
-        mUserDao = database.userDao(); // Assigned Interface Object
-
-        //insert Data
-//        User user = new User();
-//        user.setFirstName("Dave");
-//        user.setAge(2);
-//        user.setEmail("wji@uw.edu");
-//
-//        mUserDao.setInsertUser(user);
-
-        //Query for data
-        List<User> userList = mUserDao.getUserAll();
-        for(int i = 0; i < userList.size(); i++) {
-            Log.d("TEST", userList.get(i).getFirstName() + "\n"
-                            + userList.get(i).getAge() + "\n"
-                            + userList.get(i).getEmail() + "\n");
-        }
-        //data test2
-        User user2 = new User();
-        user2.setAge(3);
-        user2.setFirstName("Dave_test");
-        user2.setEmail("wji@uw.edu");
-        mUserDao.setInsertUser(user2);
-//        mUserDao.setUpdateUser(user2);
     }
 
     public void swapFragment(View v) {

@@ -3,12 +3,16 @@ package com.patrickbanez.workoutapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.gson.Gson;
+
 
 public class LoadingActivity extends AppCompatActivity {
+    private SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +20,15 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
         setTitle("Loading");
 
-        Intent startApplication = new Intent(this, CreateUserActivity.class);
+        Intent createActivity = new Intent(this, CreateUserActivity.class);
+        Intent mainActivity = new Intent(this, MainActivity.class);
+
+        sp = getSharedPreferences("userPrefs", MODE_PRIVATE);
+
+        Gson gson = new Gson();
+        String json = sp.getString("userData", "");
+        User existence = (User) gson.fromJson(json, User.class);
+
 
         // Since we won't be implementing a LoginActivity, this is a test for going from a loading
         // screen that checks if a user has created their profile:
@@ -28,8 +40,13 @@ public class LoadingActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(startApplication);
-                finish();
+                if (existence == null) {
+                    startActivity(createActivity);
+                    finish();
+                } else {
+                    startActivity(mainActivity);
+                    finish();
+                }
             }
         }, 3000); // for now it waits 3 seconds then goes to MainActivity
     }

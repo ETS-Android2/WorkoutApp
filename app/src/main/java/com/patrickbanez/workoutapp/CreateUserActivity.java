@@ -2,6 +2,7 @@ package com.patrickbanez.workoutapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -14,13 +15,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.gson.Gson;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CreateUserActivity extends AppCompatActivity {
 
     private final String TITLE = "Create Account";
-
+    private SharedPreferences userPref;
     private EditText firstNameField;
     private EditText lastNameField;
     private EditText emailField;
@@ -64,6 +67,7 @@ public class CreateUserActivity extends AppCompatActivity {
         context = getApplicationContext();
         mainActivity = new Intent(this, MainActivity.class);
         created = false;
+        userPref = getSharedPreferences("userPrefs", MODE_PRIVATE);
     }
 
     public void create(View v) {
@@ -95,7 +99,7 @@ public class CreateUserActivity extends AppCompatActivity {
         } else {
             goal = Goal.MAINTENANCE;
         }
-        User newUser = new User(firstName, lastName, email);
+        User newUser = new User(firstName, lastName, email, goal);
 
         // Verify user was created
         if (newUser != null && newUser.getFirstName().equals(firstName) && newUser.getLastName().equals(lastName)
@@ -132,6 +136,13 @@ public class CreateUserActivity extends AppCompatActivity {
             newUser.setWeight(weight);
         }
 
+        // Saving user data to shared preferences
+        SharedPreferences.Editor prefEditor = userPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(newUser);
+        prefEditor.putString("userData", json);
+        prefEditor.commit();
+
         if (created) {
             Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
             createButton.setActivated(false);
@@ -141,6 +152,7 @@ public class CreateUserActivity extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    Bundle bundle = new Bundle(1);
                     startActivity(mainActivity);
                     finish();
                 }
