@@ -36,7 +36,7 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        userPref = this.getActivity().getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
+        userPref = this.getActivity().getSharedPreferences(String.valueOf(R.string.user_sp), Context.MODE_PRIVATE);
         // Test user
         // Reading the saved user and creating a User object to pass to ProfileFragment
         Gson gson = new Gson();
