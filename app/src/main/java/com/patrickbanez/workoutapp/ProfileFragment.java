@@ -67,7 +67,7 @@ public class ProfileFragment extends Fragment{
         setSaveButton();
         initFields();
         setNullBackground();
-        sp = getActivity().getSharedPreferences("userPref", Context.MODE_PRIVATE);
+        sp = getActivity().getSharedPreferences(String.valueOf(R.string.user_sp), Context.MODE_PRIVATE);
     }
 
     private void getFields() {

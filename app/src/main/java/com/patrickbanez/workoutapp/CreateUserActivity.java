@@ -67,7 +67,7 @@ public class CreateUserActivity extends AppCompatActivity {
         context = getApplicationContext();
         mainActivity = new Intent(this, MainActivity.class);
         created = false;
-        userPref = getSharedPreferences("userPrefs", MODE_PRIVATE);
+        userPref = getSharedPreferences(String.valueOf(R.string.user_sp), MODE_PRIVATE);
     }
 
     public void create(View v) {

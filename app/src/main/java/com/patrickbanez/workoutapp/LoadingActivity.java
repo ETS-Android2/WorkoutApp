@@ -23,7 +23,7 @@ public class LoadingActivity extends AppCompatActivity {
         Intent createActivity = new Intent(this, CreateUserActivity.class);
         Intent mainActivity = new Intent(this, MainActivity.class);
 
-        sp = getSharedPreferences("userPrefs", MODE_PRIVATE);
+        sp = getSharedPreferences(String.valueOf(R.string.user_sp), MODE_PRIVATE);
 
         Gson gson = new Gson();
         String json = sp.getString("userData", "");
