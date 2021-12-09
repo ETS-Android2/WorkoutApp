@@ -140,7 +140,7 @@ public class CreateUserActivity extends AppCompatActivity {
         SharedPreferences.Editor prefEditor = userPref.edit();
         Gson gson = new Gson();
         String json = gson.toJson(newUser);
-        prefEditor.putString("userData", json);
+        prefEditor.putString(String.valueOf(R.string.user_data_key), json);
         prefEditor.commit();
 
         if (created) {

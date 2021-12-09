@@ -18,9 +18,9 @@ import com.google.gson.Gson;
  */
 public class SettingsFragment extends Fragment {
 
-    View view;
-    Button profileButton;
-    ProfileFragment profileFragment;
+    private View view;
+    private Button profileButton;
+    private ProfileFragment profileFragment;
     private SharedPreferences userPref;
 
     public SettingsFragment() {
@@ -37,26 +37,16 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         userPref = this.getActivity().getSharedPreferences(String.valueOf(R.string.user_sp), Context.MODE_PRIVATE);
-        // Test user
         // Reading the saved user and creating a User object to pass to ProfileFragment
         Gson gson = new Gson();
         String json = userPref.getString("userData", "");
-        User tester = (User) gson.fromJson(json, User.class);
-//
-        if (tester == null) {
-            Log.d("Read result", "tester null");
-        } else {
-            Log.d("Read result", "tester NOT null");
-        }
-//        if (tester.getFirstName() == null) {
-//            Log.d("Read first name result", "first name null");
-//        }
+        User user = (User) gson.fromJson(json, User.class);
 
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_settings, container, false);
         profileButton = view.findViewById(R.id.profileButton);
         setButtonActions();
-        profileFragment = new ProfileFragment(tester);
+        profileFragment = new ProfileFragment(user);
         return view;
     }
 

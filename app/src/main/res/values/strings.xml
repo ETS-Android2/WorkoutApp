@@ -70,5 +70,6 @@
     <string name="search_button">Search_button</string>
     <string name="textview">TextView</string>
     <string name="user_sp">userSharedPreference</string>
+    <string name="user_data_key">userData</string>
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

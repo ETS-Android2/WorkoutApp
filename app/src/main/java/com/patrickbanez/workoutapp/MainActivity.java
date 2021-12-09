@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         settings = new SettingsFragment();
     }
 
-    // For now the app opens to the Home page because I didn't set a starting point.
-    // In the future we can set it to the login activity.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent); // move to exercise activity
             }
         });
-        // Hiding the title bar. I'll add it again when I can figure out how to resize it using XML file -- It's huge default
         setTitle(tabNames[0]);
     }
 
@@ -59,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         if (v.getId() == R.id.homeButton) {
             getSupportFragmentManager().beginTransaction().replace(R.id.activeView, home, null).commit();
             setTitle(tabNames[0]);
-//            Intent home =  new Intent(this, CreateUserActivity.class);
-//            startActivity(home);
         }
         if (v.getId() == R.id.workoutButton) {
             getSupportFragmentManager().beginTransaction().replace(R.id.activeView, workout, null).commit();

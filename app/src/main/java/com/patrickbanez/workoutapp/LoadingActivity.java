@@ -26,7 +26,7 @@ public class LoadingActivity extends AppCompatActivity {
         sp = getSharedPreferences(String.valueOf(R.string.user_sp), MODE_PRIVATE);
 
         Gson gson = new Gson();
-        String json = sp.getString("userData", "");
+        String json = sp.getString(String.valueOf(R.string.user_data_key), "");
         User existence = (User) gson.fromJson(json, User.class);
 
 
@@ -48,6 +48,6 @@ public class LoadingActivity extends AppCompatActivity {
                     finish();
                 }
             }
-        }, 3000); // for now it waits 3 seconds then goes to MainActivity
+        }, 5000); // for now it waits 3 seconds then goes to MainActivity
     }
 }

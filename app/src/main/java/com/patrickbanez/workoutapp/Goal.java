@@ -9,13 +9,13 @@ public enum Goal {
 	@Override
 	public String toString() {
 		if (this == WEIGHT_LOSS) {
-			return "Weight Loss";
+			return String.valueOf(R.string.weight_loss_text);
 		} else if (this == MUSCLE_BUILDING) {
-			return "Muscle Building";
+			return String.valueOf(R.string.muscle_building_text);
 		} else if (this == STRENGTH_BUILDING) {
-			return "Strength Building";
+			return String.valueOf(R.string.strength_building_text);
 		} else {
-			return "Maintenance";
+			return String.valueOf(R.string.maintenance_text);
 		}
 	}
 }
