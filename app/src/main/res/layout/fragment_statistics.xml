@@ -56,7 +56,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintBottom_toTopOf="@id/workoutDuration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toBottomOf="@+id/statsTitle" />
 
     <TextView
@@ -67,7 +67,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintBottom_toTopOf="@id/averageDuration"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toBottomOf="@+id/workoutsComplete" />
 
     <TextView
@@ -78,7 +78,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         app:layout_constraintBottom_toTopOf="@+id/guideline20"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline23"
+        app:layout_constraintStart_toStartOf="@+id/guideline25"
         app:layout_constraintTop_toBottomOf="@+id/workoutDuration" />
 
     <com.google.android.material.textfield.TextInputLayout

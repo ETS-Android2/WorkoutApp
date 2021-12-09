@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -37,10 +40,14 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     private TextView xAxisTitle, yAxisTitle;
     private int currFocus;
     private int primaryColor;
-    private IndexAxisValueFormatter weeklyFormatter, sixMonthFormatter, monthlyFormatter, allTimeFormatter;
+    private IndexAxisValueFormatter weeklyFormatter, monthFormatter, sixMonthFormatter, monthlyFormatter, allTimeFormatter;
     private LineDataSet weeklySet, monthSet, sixMonthSet, monthlySet, allTimeSet;
     private LineData weeklyData, monthData, sixMonthData, monthlyData, allTimeData;
     private LineChart chart;
+    private ArrayList<String> graphDropdownList, graphFullList;
+    private AutoCompleteTextView autoComplete;
+    private String currentDropdownItem;
+    private ArrayAdapter arrayAdapter;
 
     public StatisticsFragment() {
         // Required empty public constructor
@@ -50,9 +57,6 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     @Override
     public void onResume() {
         super.onResume();
-        String[] graphDropdown = getResources().getStringArray(R.array.graphTypes);
-        ArrayAdapter arrayAdapter = new ArrayAdapter(requireContext(), R.layout.dropdown_item, graphDropdown);
-        AutoCompleteTextView autoComplete = view.findViewById(R.id.autoCompleteTextView);
         autoComplete.setAdapter(arrayAdapter);
     }
 
@@ -60,6 +64,29 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_statistics, container, false);
+
+        //dropdown value arrays
+        String[] graphDropdown = getResources().getStringArray(R.array.graphTypes);
+        graphDropdownList = new ArrayList<>();
+        Collections.addAll(graphDropdownList, graphDropdown);
+        graphFullList = new ArrayList<>();
+        Collections.addAll(graphFullList, graphDropdown);
+        currentDropdownItem = graphDropdownList.get(0);
+        autoComplete = view.findViewById(R.id.autoCompleteTextView);
+
+        //fixes the dropdown box to not show current value in dropdown list
+        autoComplete.setOnItemClickListener((parent, view, position, id) -> {
+            String item = graphDropdownList.get(position);
+            graphDropdownList.clear();
+            graphDropdownList.addAll(graphFullList);
+            graphDropdownList.remove(item);
+            arrayAdapter.notifyDataSetChanged();
+            currentDropdownItem = item;
+        });
+        arrayAdapter = new ArrayAdapter(requireContext(), R.layout.dropdown_item, graphDropdownList);
+        autoComplete.setAdapter(arrayAdapter);
+        graphDropdownList.remove(currentDropdownItem);
+        arrayAdapter.notifyDataSetChanged();
 
         //X and Y axis titles
         xAxisTitle = (TextView) view.findViewById(R.id.xAxisTitle);
@@ -83,21 +110,12 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
         TextView averageDuration = (TextView) view.findViewById(R.id.averageDuration);
 
         //Here is where the stats would be set from the global stat holder
-        //String wComplete = "Total Workouts Completed: " + ; //to change
-        //String wDuration = "Total Workout Duration: " + ; //to change
-        //String avgDuration = "Average Workout Duration: " + ; //to change
-        //workoutsComplete.setText(wComplete);
-        //workoutDuration.setText(wDuration);
-        //averageDuration.setText(avgDuration);
-
-        //This is where you would change the x and y axis titles
-        //Will have to account for changing of dropdown box value
-        String xAxisT = ""; //to change
-        String yAxisT = ""; //to change
-        TextView xAxisTitle = (TextView) view.findViewById(R.id.xAxisTitle);
-        TextView yAxisTitle = (TextView) view.findViewById(R.id.yAxisTitle);
-        //xAxisTitle.setText(xAxisT);
-        //yAxisTitle.setText(yAxisT);
+        String wComplete = "Total Workouts Completed: " + 428; //to change
+        String wDuration = "Total Workout Duration: " + 283.26 + " Hours"; //to change
+        String avgDuration = "Average Workout Duration: " + 39 + " Minutes"; //to change
+        workoutsComplete.setText(wComplete);
+        workoutDuration.setText(wDuration);
+        averageDuration.setText(avgDuration);
 
         //This is where the charts data is created/added
         chart = (LineChart) view.findViewById(R.id.LineChart);
@@ -179,6 +197,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                 chart.getXAxis().setValueFormatter(weeklyFormatter);
                 chart.setData(weeklyData);
                 chart.getXAxis().setLabelCount(7);
+                chart.getXAxis().setTextSize(14f);
                 chart.invalidate();
             break;
             case R.id.btnOneMonth:
@@ -186,9 +205,10 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                 //This is where the graph would be changed
                 xAxisTitle.setText("Duration In Minutes");
                 yAxisTitle.setText("Workout Date (Past 30 Days)");
-                chart.getXAxis().setValueFormatter(null);
+                chart.getXAxis().setValueFormatter(monthFormatter);
                 chart.setData(monthData);
-                chart.getXAxis().setLabelCount(15);
+                chart.getXAxis().setLabelCount(10);
+                chart.getXAxis().setTextSize(14f);
                 chart.invalidate();
             break;
             case R.id.btnSixMonths:
@@ -199,6 +219,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                 chart.getXAxis().setValueFormatter(sixMonthFormatter);
                 chart.setData(sixMonthData);
                 chart.getXAxis().setLabelCount(6);
+                chart.getXAxis().setTextSize(16f);
                 chart.invalidate();
             break;
             case R.id.btnOneYear:
@@ -209,6 +230,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                 chart.getXAxis().setValueFormatter(monthlyFormatter);
                 chart.setData(monthlyData);
                 chart.getXAxis().setLabelCount(12);
+                chart.getXAxis().setTextSize(16f);
                 chart.invalidate();
             break;
             case R.id.btnAllTime:
@@ -219,6 +241,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                 chart.getXAxis().setValueFormatter(allTimeFormatter);
                 chart.setData(allTimeData);
                 chart.getXAxis().setLabelCount(15); //change this
+                chart.getXAxis().setTextSize(14f);
                 chart.invalidate();
             break;
         }
@@ -252,6 +275,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
         //Might need to be an arraylist
 
         String[] weeklyLabels = new String[7];
+        String[] monthLabels = new String[30];
         String[] sixMonthLabels = new String[6];
         String[] monthlyLabels = new String[12];
         String[] allTimeLabels = new String[15]; //should be set to the length of app usage for user
@@ -264,6 +288,12 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
                     dayInt + getDayOfMonthSuffix(dayInt);
             weeklyLabels[i] = weeklyLabels[i].charAt(0) + weeklyLabels[i].substring(1, 2).toLowerCase() +
                     weeklyLabels[i].substring(2);
+            j++;
+        }
+        j = 0;
+        for(int i = 29; i >= 0; i--) {
+            int dayInt = java.time.LocalDate.now().minusDays(j).getDayOfMonth();
+            monthLabels[i] = dayInt + getDayOfMonthSuffix(dayInt);
             j++;
         }
         j = 0;
@@ -281,6 +311,7 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
 
         //value formatters for the xValue labels
         weeklyFormatter = new IndexAxisValueFormatter(weeklyLabels);
+        monthFormatter = new IndexAxisValueFormatter(monthLabels);
         sixMonthFormatter = new IndexAxisValueFormatter(sixMonthLabels);
         monthlyFormatter = new IndexAxisValueFormatter(monthlyLabels);
         allTimeFormatter = new IndexAxisValueFormatter(allTimeLabels);
@@ -300,19 +331,19 @@ public class StatisticsFragment extends Fragment implements View.OnClickListener
         //for now it will just use fake data (30 is for the full month values but if all time is high it could go further)
         for(int i = 0; i < 30; i++) {
             int rMinuteValue = r.nextInt(100-20) + 20;
-            if(i < 7) {
-                weeklyDuration.add(new Entry(i,rMinuteValue));
+            if(29-i < 7) {
+                weeklyDuration.add(new Entry(6-(29-i),rMinuteValue));
             }
             monthDuration.add(new Entry(i,rMinuteValue));
-            int rHourValue = r.nextInt(120-40) + 40;
-            if(i < 6) {
-                sixMonthDuration.add(new Entry(i,rHourValue));
+            int rHourValue = r.nextInt(32-18) + 18;
+            if(29-i < 6) {
+                sixMonthDuration.add(new Entry(5-(29-i),rHourValue));
             }
-            if(i < 12) {
-                MonthlyDuration.add(new Entry(i,rHourValue));
+            if(29-i < 12) {
+                MonthlyDuration.add(new Entry(11-(29-i),rHourValue));
             }
-            if(i < 15) {
-                allTimeDurations.add(new Entry(i,rHourValue));
+            if(29-i < 15) {
+                allTimeDurations.add(new Entry(14-(29-i),rHourValue));
             }
         }
 
