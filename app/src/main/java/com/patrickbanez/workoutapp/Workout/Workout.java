@@ -14,6 +14,7 @@ public class Workout implements Iterable<Exercise> {
     private String workoutType;
     private String name;
     private String description;
+    private int count;
 
     public Workout() {
         this.name = "";
@@ -77,14 +78,14 @@ public class Workout implements Iterable<Exercise> {
         return workoutType;
     }
 
-    public int getCalories() {
+    /*public int getCalories() {
         //loops through arraylist and adds all calories together and returns sum
         int calories = 0;
         for (Exercise e : exercises) {
             calories += e.getCalories();
         }
         return calories;
-    }
+    }*/
 
     public int getDuration() {
         //loops through arraylist and adds all durations together and returns sum
@@ -94,6 +95,8 @@ public class Workout implements Iterable<Exercise> {
         }
         return duration;
     }
+
+    public int getCount(){return exercises.size();}
 
     public WorkoutIterator iterator() {
         return new WorkoutIterator(this);

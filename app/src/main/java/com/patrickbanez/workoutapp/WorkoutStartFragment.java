@@ -75,17 +75,9 @@ public class WorkoutStartFragment extends Fragment {
         // needs to get the workout object from the global list
         // also need to check if the workout is valid ie not null or empty
         // for now it will just use fake data
-        Workout temp = new Workout();
-        temp.setName("Testing Workout");
-        temp.setDescription("This is a test for the workout start class");
-        Exercise tempE = new Exercise("Push Up", 10);
-        Exercise tempE2 = new Exercise("Lunges", 10);
-        Exercise tempE3 = new Exercise("Squats", 10);
-        temp.addExercise(tempE);
-        temp.addExercise(tempE2);
-        temp.addExercise(tempE3);
+        CreateWorkoutList temp = new CreateWorkoutList();
 
-        this.workout = temp;
+        this.workout = temp.getWorkoutList().getWorkout(0);
         duration = Duration.ofSeconds(0);
         currentExerciseIndex = 0;
 
@@ -110,7 +102,7 @@ public class WorkoutStartFragment extends Fragment {
         });
         ImageButton btnNext = (ImageButton) view.findViewById(R.id.btnNextExercise);
         btnNext.setOnClickListener(v -> {
-            if(currentExerciseIndex >= (workout.getSize() - 1)) {
+            if(currentExerciseIndex >= (workout.getCount() - 1)) {
                 // need to save duration info before deleting
 
                 getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();

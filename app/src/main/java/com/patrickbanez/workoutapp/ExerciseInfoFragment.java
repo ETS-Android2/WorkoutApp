@@ -57,7 +57,7 @@ public class ExerciseInfoFragment extends Fragment{
 
         // this is where you would get the exercise from the workout list
         // but for now it will just use fake data
-        Exercise exercise = new Exercise("Push Up", 10);
+        Exercise exercise = new Exercise("Push Up");
         exercise.setHelp("1. Get down on all fours, placing your hands slightly wider than your shoulders.\n\n2. Straighten your arms and legs.\n\n3. Lower your body until your chest nearly touches the floor.\n\n4. Pause, then push yourself back up.\n\n5. Repeat.");
 
         ImageButton btnExit = (ImageButton) view.findViewById(R.id.btnExit);

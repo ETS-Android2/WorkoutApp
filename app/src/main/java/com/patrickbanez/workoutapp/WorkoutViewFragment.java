@@ -17,6 +17,7 @@ public class WorkoutViewFragment extends Fragment {
     private Workout workout;
     private Intent editWorkout;
     private Button editWorkoutButton;
+    private Button startWorkoutButton;
     private Button deleteWorkoutButton;
 
     public WorkoutViewFragment() {
@@ -54,6 +55,17 @@ public class WorkoutViewFragment extends Fragment {
                 startActivity(new Intent(getContext(), EditWorkoutActivity.class));
             }
         });
+
+        /*startWorkoutButton = (Button) view.findViewById(R.id.startButton);
+
+        startWorkoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                WorkoutStartFragment startWorkout = new WorkoutStartFragment();
+                getChildFragmentManager().beginTransaction().replace(, startWorkout, null).commit();
+                startActivity(new Intent(getContext(), EditWorkoutActivity.class));
+            }
+        });*/
 
         deleteWorkoutButton = (Button) view.findViewById(R.id.deleteWorkoutButton);
 
