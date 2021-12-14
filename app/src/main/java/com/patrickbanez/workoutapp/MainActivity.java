@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     TextView dayText;
     ImageButton search_button;
     private static HomeFragment home;
-    private static WorkoutFragment workout;
+    private static ManageWorkoutsFragment manageWorkoutsFragment;
     private static StatisticsFragment statistics;
     private static SettingsFragment settings;
 
     static {
         home = new HomeFragment();
-        workout = new WorkoutFragment();
+        manageWorkoutsFragment = new ManageWorkoutsFragment();
         statistics = new StatisticsFragment();
         settings = new SettingsFragment();
     }
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(home);
         }
         if (v.getId() == R.id.workoutButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, workout, null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, manageWorkoutsFragment, null).commit();
             setTitle(tabNames[1]);
         }
         if (v.getId() == R.id.statisticsButton) {

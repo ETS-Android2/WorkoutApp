@@ -45,4 +45,5 @@ public class EditSetFragment extends Fragment {
 
         return view;
     }
+
 }

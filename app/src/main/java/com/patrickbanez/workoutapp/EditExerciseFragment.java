@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.patrickbanez.workoutapp.Workout.Exercise;
+import com.patrickbanez.workoutapp.Workout.Set;
 
 public class EditExerciseFragment extends Fragment {
 
@@ -17,7 +18,6 @@ public class EditExerciseFragment extends Fragment {
     private EditSetFragment[] myEditSetFragments;
 
     public EditExerciseFragment(Exercise ex) {
-        exercise = new Exercise(ex.getName());
         exercise = ex;
     }
 
@@ -37,9 +37,18 @@ public class EditExerciseFragment extends Fragment {
         myEditSetFragments = new EditSetFragment[exercise.getCount()];
 
         for(int i = 0; i < exercise.getCount(); i++){
+            Set s = exercise.getSet(i);
+            myEditSetFragments[i] = new EditSetFragment(s,i+1);
+        }
+
+        for(int i = 0; i < exercise.getCount(); i++){
             getChildFragmentManager().beginTransaction().replace(R.id.setFrame, myEditSetFragments[i], null).commit();
         }
 
         return view;
+    }
+
+    public void setExercise(Exercise exercise) {
+        this.exercise = exercise;
     }
 }

@@ -17,6 +17,12 @@ public class EditWorkoutActivity extends AppCompatActivity {
     private EditExerciseFragment [] myEditExerciseFragments;
     private Button backButton;
     private WorkoutList workoutList;
+    private Workout workout;
+
+
+    public EditWorkoutActivity(Workout workout) {
+        this.workout = workout;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,12 @@ public class EditWorkoutActivity extends AppCompatActivity {
         });
 
         //will change
-        CreateWorkoutList createWorkoutList = new CreateWorkoutList();
 
-        workoutList = createWorkoutList.getWorkoutList();
-        myEditExerciseFragments = new EditExerciseFragment[workoutList.getCount()];
+        myEditExerciseFragments = new EditExerciseFragment[workout.getCount()];
+
+        for(int i = 0; i < workout.getCount(); i++){
+            myEditExerciseFragments[i].setExercise(workout.getExercise(i));
+        }
 
         for(int i = 0; i < workoutList.getCount(); i++){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayout, myEditExerciseFragments[i], null).commit();
