@@ -6,72 +6,142 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/dayText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/textview"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopHorizontal2"
+        app:layout_constraintEnd_toStartOf="@+id/search_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeftVertical"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTopHorizontal" />
+
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/search_button"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:minHeight="48dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/search"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopHorizontal2"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineRightVertical"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/dayText"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTopHorizontal"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/activeView"
+        android:name="com.patrickbanez.workoutapp.HomeFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineHorizontalBottom2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dayText" />
+
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="409dp"
-        android:layout_height="729dp"
-        android:orientation="vertical"
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@id/guidelineHorizontalBottom2">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/activeView"
-            android:name="com.patrickbanez.workoutapp.HomeFragment"
-            android:layout_width="match_parent"
-            android:layout_height="691dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/homeButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="1"
+            android:contentDescription="@string/home_button"
+            android:focusableInTouchMode="true"
+            android:onClick="swapFragment"
+            android:scaleType="fitCenter"
+            android:src="@drawable/home_fill"
+            tools:ignore="UsingOnClickInXml" />
 
-            <ImageButton
-                android:id="@+id/homeButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="102dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/home_button"
-                android:focusableInTouchMode="true"
-                android:onClick="swapFragment"
-                android:scaleType="fitCenter"
-                android:src="@drawable/home_fill"
-                tools:ignore="UsingOnClickInXml" />
+        <ImageButton
+            android:id="@+id/workoutButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/workout_button"
+            android:onClick="swapFragment"
+            android:scaleType="fitCenter"
+            android:src="@drawable/barbell_fill"
+            tools:ignore="UsingOnClickInXml" />
 
-            <ImageButton
-                android:id="@+id/workoutButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="107dp"
-                android:layout_height="wrap_content"
-                android:onClick="swapFragment"
-                android:scaleType="fitCenter"
-                android:src="@drawable/barbell_fill"
-                tools:ignore="UsingOnClickInXml" />
+        <ImageButton
+            android:id="@+id/statisticsButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/statistics_button"
+            android:onClick="swapFragment"
+            android:scaleType="fitCenter"
+            android:src="@drawable/analytics_fill"
+            tools:ignore="UsingOnClickInXml" />
 
-            <ImageButton
-                android:id="@+id/statisticsButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="81dp"
-                android:layout_height="wrap_content"
-                android:onClick="swapFragment"
-                android:scaleType="fitCenter"
-                android:src="@drawable/analytics_fill"
-                tools:ignore="UsingOnClickInXml" />
-
-            <ImageButton
-                android:id="@+id/settingsButton"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:scaleType="fitCenter"
-                android:onClick="swapFragment"
-                tools:ignore="UsingOnClickInXml"
-                android:src="@drawable/settings" />
-        </LinearLayout>
-
+        <ImageButton
+            android:id="@+id/settingsButton"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/settings_button"
+            android:onClick="swapFragment"
+            android:scaleType="fitCenter"
+            android:src="@drawable/settings"
+            tools:ignore="UsingOnClickInXml" />
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRightVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeftVertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopHorizontal2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.06" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineHorizontalBottom2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
 </androidx.constraintlayout.widget.ConstraintLayout>

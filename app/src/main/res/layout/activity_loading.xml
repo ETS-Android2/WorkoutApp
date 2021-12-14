@@ -6,4 +6,67 @@
     android:layout_height="match_parent"
     tools:context=".LoadingActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.01" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottomLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineRightLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineLeftLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/guidelineBottomLogo"
+        app:layout_constraintEnd_toStartOf="@id/guidelineRightLogo"
+        app:layout_constraintStart_toStartOf="@id/guidelineLeftLogo"
+        app:layout_constraintTop_toTopOf="@id/guidelineTopLogo"
+        app:srcCompat="@drawable/logos_black" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.99" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88" />
+
+    <TextView
+        android:id="@+id/creators"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Omar Shaban   Collin Niemela   David Woo   Patrick Banez"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBottom"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineRightLogo"
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeftLogo"
+        app:layout_constraintTop_toTopOf="@+id/guideline5" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

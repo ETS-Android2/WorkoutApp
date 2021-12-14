@@ -1,9 +1,8 @@
 package com.patrickbanez.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.InputType;
@@ -14,20 +13,17 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.patrickbanez.workoutapp.User.Goal;
-import com.patrickbanez.workoutapp.User.User;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.gson.Gson;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CreateUserActivity extends AppCompatActivity {
-    // Issues the user's identification number associated with their account. I'll be saving this value
-    // to a file and read it everytime a user is created so it does not restart everytime the app restarts.
-    // Increments with each user;
-    private static long UID = 0;
 
     private final String TITLE = "Create Account";
-
+    private SharedPreferences userPref;
     private EditText firstNameField;
     private EditText lastNameField;
     private EditText emailField;
@@ -67,27 +63,32 @@ public class CreateUserActivity extends AppCompatActivity {
         weightField = findViewById(R.id.weightField);
         weightField.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
 
-        fitnessGoals = (RadioGroup) findViewById(R.id.radioGroup);
+        fitnessGoals = (RadioGroup) findViewById(R.id.goalsProfile);
         context = getApplicationContext();
         mainActivity = new Intent(this, MainActivity.class);
         created = false;
+        userPref = getSharedPreferences(String.valueOf(R.string.user_sp), MODE_PRIVATE);
     }
 
     public void create(View v) {
+        Button createButton = ((Button) v);
+        createButton.setClickable(false);
         // Verify the required fields are filled correctly
         if (firstNameField.getText().length() < 1 || lastNameField.getText().length() < 1) {
             Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show();
+            createButton.setClickable(true);
             return;
         }
         if (!isEmailValid(emailField.getText().toString())) {
             Toast.makeText(context, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+            createButton.setClickable(true);
             return;
         }
 
         // Creating user
-        String firstName = this.firstNameField.getText().toString();
-        String lastName = lastNameField.getText().toString();
-        String email = emailField.getText().toString();
+        String firstName = this.firstNameField.getText().toString().trim();
+        String lastName = lastNameField.getText().toString().trim();
+        String email = emailField.getText().toString().trim();
         RadioButton radioGoal = (RadioButton) findViewById(fitnessGoals.getCheckedRadioButtonId());
         // Weight loss goal by default
         Goal goal = Goal.WEIGHT_LOSS;
@@ -98,9 +99,7 @@ public class CreateUserActivity extends AppCompatActivity {
         } else {
             goal = Goal.MAINTENANCE;
         }
-        String newUID = "WORK" + Long.toString(UID);
-        UID++;
-        User newUser = new User(firstName, lastName, email, goal, newUID);
+        User newUser = new User(firstName, lastName, email, goal);
 
         // Verify user was created
         if (newUser != null && newUser.getFirstName().equals(firstName) && newUser.getLastName().equals(lastName)
@@ -108,6 +107,7 @@ public class CreateUserActivity extends AppCompatActivity {
             created = true;
         } else {
             Toast.makeText(getApplicationContext(), "Profile Creation Failed!", Toast.LENGTH_SHORT).show();
+            createButton.setClickable(true);
             return;
         }
 
@@ -132,20 +132,27 @@ public class CreateUserActivity extends AppCompatActivity {
 
         temp = weightField.getText().toString();
         if (!temp.equals("")) {
-            double weight = Double.parseDouble(temp);
+            int weight = Integer.parseInt(temp);
             newUser.setWeight(weight);
         }
 
+        // Saving user data to shared preferences
+        SharedPreferences.Editor prefEditor = userPref.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(newUser);
+        prefEditor.putString(String.valueOf(R.string.user_data_key), json);
+        prefEditor.commit();
+
         if (created) {
-            Toast.makeText(getApplicationContext(), "Profile Created! Your goal is "
-                    + newUser.getGoal().toString() + "!", Toast.LENGTH_SHORT).show();
-            ((Button)findViewById(R.id.createButton)).setActivated(false);
+            Toast.makeText(getApplicationContext(), "Profile Created!", Toast.LENGTH_SHORT).show();
+            createButton.setActivated(false);
             Handler handler = new Handler();
             // Wait 1 second after creating user, then go to MainActivity. This can be removed, it just
             // feels like a smoother transition.
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    Bundle bundle = new Bundle(1);
                     startActivity(mainActivity);
                     finish();
                 }

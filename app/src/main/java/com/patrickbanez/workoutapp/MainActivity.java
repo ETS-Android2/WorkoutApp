@@ -1,14 +1,24 @@
 package com.patrickbanez.workoutapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
+
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
     String[] tabNames = {"Home", "Workout", "Statistics", "Settings"};
-
+    TextView dayText;
+    ImageButton search_button;
     private static HomeFragment home;
     private static WorkoutFragment workout;
     private static StatisticsFragment statistics;
@@ -21,14 +31,24 @@ public class MainActivity extends AppCompatActivity {
         settings = new SettingsFragment();
     }
 
-    // For now the app opens to the Home page because I didn't set a starting point.
-    // In the future we can set it to the login activity.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Date currentTime = Calendar.getInstance().getTime();
+        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentTime);
 
-        // Hiding the title bar. I'll add it again when I can figure out how to resize it using XML file -- It's huge default
+
+        dayText = findViewById(R.id.dayText);
+        dayText.setText(formattedDate);
+        search_button = findViewById(R.id.search_button);
+        search_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CreateUserActivity.class);
+                startActivity(intent); // move to exercise activity
+            }
+        });
         setTitle(tabNames[0]);
     }
 

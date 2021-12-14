@@ -3,16 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/activity_create_user.xml" value="0.27395833333333336" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.27395833333333336" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/fragment_home.xml" value="0.27395833333333336" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/fragment_profile.xml" value="0.2734375" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/fragment_settings.xml" value="0.28125" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/fragment_statistics.xml" value="0.28125" />
+        <entry key="..\:/360/WorkoutApp/app/src/main/res/layout/fragment_workout.xml" value="0.2734375" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/activity_create_user.xml" value="0.33" />
-        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/activity_loading.xml" value="0.21875" />
-        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/activity_loading.xml" value="0.33" />
+        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_home.xml" value="0.2957427536231884" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_profile.xml" value="0.38697916666666665" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_s_e_t_t_i_n_g_s.xml" value="0.21875" />
-        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_settings.xml" value="0.21875" />
+        <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_settings.xml" value="0.33" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_statistics.xml" value="0.2817028985507246" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_tracking.xml" value="0.2957427536231884" />
         <entry key="..\:/AndroidProjects/WorkoutApp/app/src/main/res/layout/fragment_workout.xml" value="0.2957427536231884" />
+<<<<<<< HEAD
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_create_user.xml" value="0.25" />
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/dropdown_item.xml" value="0.5" />
@@ -21,6 +29,10 @@
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/fragment_statistics.xml" value="0.33" />
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/fragment_workout.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/Unify/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/fragment_workout_start.xml" value="0.25" />
+=======
+        <entry key="..\:/Users/p_tri/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/p_tri/AndroidStudioProjects/WorkoutApp/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
+>>>>>>> copy_home_profile
       </map>
     </option>
   </component>

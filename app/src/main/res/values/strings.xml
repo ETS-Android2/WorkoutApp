@@ -9,12 +9,14 @@
     <string name="workout_button">Workout</string>
     <string name="statistics_button">Statistics</string>
     <string name="settings_button">Settings</string>
-    <string name="first_name_text">First Name:</string>
-    <string name="last_name_text">Last Name:</string>
-    <string name="email_text">Email:</string>
-    <string name="age_text">Age:</string>
-    <string name="height_text">Height:</string>
-    <string name="weight_text">Weight:</string>
+    <string name="name_text">Name: </string>
+    <string name="first_name_text">First Name: </string>
+    <string name="last_name_text">Last Name: </string>
+    <string name="email_text">Email: </string>
+    <string name="age_text">Age: </string>
+    <string name="height_text">Height: </string>
+    <string name="weight_text">Weight: </string>
+    <string name="goals_profile_text">Goals: </string>
     <string name="default_first_name_text">
         <font size="14">
             John (required)
@@ -64,7 +66,14 @@
         <item>Workout Sets</item>
         <item>Workout Reps</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="cancel_text">Cancel</string>
+    <string name="save_text">Save</string>
+    <string name="feet_text">Feet</string>
+    <string name="inch_text">Inches</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="btn">button</string>
+    <string name="search_button">Search_button</string>
+    <string name="textview">TextView</string>
+    <string name="user_sp">userSharedPreference</string>
+    <string name="user_data_key">userData</string>
 </resources>
