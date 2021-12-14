@@ -5,6 +5,7 @@
 
 package com.patrickbanez.workoutapp.Workout;
 
+import java.sql.Time;
 import java.util.Iterator;
 import java.util.*;
 
@@ -15,7 +16,17 @@ public class Exercise implements Iterable<Set> {
     //private int calories;
     //need to find/create a class to hold the time
     private int duration;
+    private int index;
     //private int caloriesPerRep;
+
+    public Exercise() {
+        //this.caloriesPerRep = caloriesPerRep;
+        name = "";
+        helpInfo = "";
+        //calories = 0;
+        duration = 0;
+        sets = new ArrayList<Set>();
+    }
 
     public Exercise(String name) {
         //this.caloriesPerRep = caloriesPerRep;
@@ -25,6 +36,28 @@ public class Exercise implements Iterable<Set> {
         duration = 0;
         sets = new ArrayList<Set>();
     }
+
+
+    public void setExercise(Exercise e){
+        setName(e.getName());
+        setHelp(e.getHelp());
+        setIndex(e.getIndex());
+        setSets(e.getSets());
+    }
+
+    public ArrayList<Set> getSets(){
+        return sets;
+    }
+
+    public void setSets(ArrayList<Set> s){
+        sets = s;
+    }
+
+    public void setIndex(int i){
+        index = i;
+    }
+
+    public int getIndex(){ return index; }
 
     public void setName(String name) {
         this.name = name;

@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private UserDao mUserDao;
-    String[] tabNames = {"Home", "Workout", "Statistics", "Settings"};
+    String[] tabNames = {"Home", "Manage Workouts", "Statistics", "Settings"};
     TextView dayText;
     ImageButton search_button;
     private static HomeFragment home;
@@ -104,5 +104,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.activeView, settings, null).commit();
             setTitle(tabNames[3]);
         }
+    }
+
+    public void startWorkoutSwap(WorkoutStartFragment f){
+        getSupportFragmentManager().beginTransaction().replace(R.id.activeView, f, null).commit();
     }
 }

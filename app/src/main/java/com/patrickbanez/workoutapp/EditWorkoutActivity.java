@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.patrickbanez.workoutapp.Workout.Exercise;
 import com.patrickbanez.workoutapp.Workout.Workout;
 import com.patrickbanez.workoutapp.Workout.WorkoutList;
 
@@ -20,14 +22,23 @@ public class EditWorkoutActivity extends AppCompatActivity {
     private Workout workout;
 
 
-    public EditWorkoutActivity(Workout workout) {
-        this.workout = workout;
+    public EditWorkoutActivity() {
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_workout);
+        setTitle("Edit Workout");
+
+        CreateWorkoutList createWorkoutList = new CreateWorkoutList();
+
+        WorkoutList workoutList = createWorkoutList.getWorkoutList();
+
+        workout = new Workout();
+
+        workout.setWorkout(workoutList.getWorkout(getIntent().getIntExtra("index", 0)));
+
 
         backButton = (Button) findViewById(R.id.backButton);
 
@@ -43,11 +54,12 @@ public class EditWorkoutActivity extends AppCompatActivity {
         myEditExerciseFragments = new EditExerciseFragment[workout.getCount()];
 
         for(int i = 0; i < workout.getCount(); i++){
-            myEditExerciseFragments[i].setExercise(workout.getExercise(i));
+            myEditExerciseFragments[i] = new EditExerciseFragment(workout.getExercise(i));
         }
 
-        for(int i = 0; i < workoutList.getCount(); i++){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentLayout, myEditExerciseFragments[i], null).commit();
+        for(int i = 0; i < workout.getCount(); i++){
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.fragmentLayout, myEditExerciseFragments[i]).addToBackStack(null).commit();
         }
 
     }

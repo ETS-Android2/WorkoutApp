@@ -14,7 +14,7 @@ public class Workout implements Iterable<Exercise> {
     private String workoutType;
     private String name;
     private String description;
-    private int count;
+    private int index;
 
     public Workout() {
         this.name = "";
@@ -28,6 +28,16 @@ public class Workout implements Iterable<Exercise> {
             return false;
         }
         return exercises.add(e);
+    }
+
+    public void setIndex(int i){
+        index = i;
+    }
+
+    public int getIndex(){ return index; }
+
+    public void setExercise(ArrayList<Exercise> e){
+        exercises = e;
     }
 
     public boolean removeExercise(String name) {
@@ -49,7 +59,10 @@ public class Workout implements Iterable<Exercise> {
     public String getExerciseNames(){
         String exercisesName = "";
         for(int i = 0; i < exercises.size(); i++){
-            exercisesName.concat((exercises.get(i)).getName());
+            exercisesName += (exercises.get(i)).getName();
+            if(i != exercises.size()-1){
+                exercisesName += ", ";
+            }
         }
         return exercisesName;
     }
@@ -78,6 +91,7 @@ public class Workout implements Iterable<Exercise> {
         return workoutType;
     }
 
+    //current API doesn't provide Calorie info
     /*public int getCalories() {
         //loops through arraylist and adds all calories together and returns sum
         int calories = 0;
@@ -87,16 +101,25 @@ public class Workout implements Iterable<Exercise> {
         return calories;
     }*/
 
-    public int getDuration() {
+    //current API doesn't provide Calorie info
+    /*public int getDuration() {
         //loops through arraylist and adds all durations together and returns sum
         int duration = 0;
         for (Exercise e : exercises) {
             duration += e.getDuration();
         }
         return duration;
-    }
+    }*/
 
     public int getCount(){return exercises.size();}
+
+    public void setWorkout(Workout w){
+        setName(w.getName());
+        setExercise(w.getExercises());
+        setDescription(w.getDescription());
+        setWorkoutType(w.getWorkoutType());
+        setIndex(w.getIndex());
+    }
 
     public WorkoutIterator iterator() {
         return new WorkoutIterator(this);

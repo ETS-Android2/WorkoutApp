@@ -20,7 +20,7 @@ public class EditSetFragment extends Fragment {
 
     public EditSetFragment(Set s, int i) {
         set = new Set(0, 0);
-        set = s;
+        set.setSet(s);
         index = i;
     }
 
@@ -35,13 +35,13 @@ public class EditSetFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_set, container, false);
 
         TextView setNumber = (TextView) view.findViewById(R.id.setNumber);
-        setNumber.setText(index);
+        setNumber.setText(Integer.toString(index));
 
         EditText editReps = (EditText) view.findViewById(R.id.editReps);
-        editReps.setText(set.getReps());
+        editReps.setText(Integer.toString(set.getReps()));
 
         EditText editWeight = (EditText) view.findViewById(R.id.editWeight);
-        editWeight.setText(String.valueOf(set.getWeight()));
+        editWeight.setText(String.valueOf(Double.toString(set.getWeight())));
 
         return view;
     }

@@ -8,22 +8,22 @@ public class CreateWorkoutList {
     private WorkoutList workoutList;
 
     public CreateWorkoutList() {
-        this.workoutList = workoutList;
+        workoutList =  new WorkoutList();
         Workout pull = new Workout();
 
         //
 
-        Exercise pull_down = new Exercise("Iso-Lateral Lat Pulldown");
+        Exercise pull_down = new Exercise("Iso-lateral Pulldowns");
         pull_down.setHelp("Pulldown help");
         pull_down.addSet(10, 60);
         pull_down.addSet(10, 60);
         pull_down.addSet(10, 60);
 
-        Exercise curl = new Exercise("Narrow Grip Bicep Curl");
+        Exercise curl = new Exercise("Wide Grip Barbell Curl");
         pull_down.setHelp("Curl help");
-        pull_down.addSet(8, 45);
-        pull_down.addSet(8, 45);
-        pull_down.addSet(8, 45);
+        curl.addSet(8, 45);
+        curl.addSet(8, 45);
+        curl.addSet(8, 45);
 
         pull.setName("Pull");
         pull.setDescription("Back and Bicep");
@@ -39,10 +39,10 @@ public class CreateWorkoutList {
         bench_press.addSet(8, 135);
 
         Exercise shoulder_press = new Exercise("Shoulder Press");
-        bench_press.setHelp("Shoulder Press help");
-        bench_press.addSet(15, 40);
-        bench_press.addSet(15, 40);
-        bench_press.addSet(15, 40);
+        shoulder_press.setHelp("Shoulder Press help");
+        shoulder_press.addSet(15, 40);
+        shoulder_press.addSet(15, 40);
+        shoulder_press.addSet(15, 40);
 
         Workout push = new Workout();
         push.setDescription("Chest, Shoulders, and Triceps");
@@ -53,16 +53,16 @@ public class CreateWorkoutList {
         //
 
         Exercise leg_press = new Exercise("Leg Press");
-        bench_press.setHelp("Leg Press help");
-        bench_press.addSet(8, 280);
-        bench_press.addSet(8, 280);
-        bench_press.addSet(8, 280);
+        leg_press.setHelp("Leg Press help");
+        leg_press.addSet(8, 280);
+        leg_press.addSet(8, 280);
+        leg_press.addSet(8, 280);
 
         Exercise squat = new Exercise("Squat");
-        bench_press.setHelp("Squat help");
-        bench_press.addSet(8, 190);
-        bench_press.addSet(8, 190);
-        bench_press.addSet(8, 190);
+        squat.setHelp("Squat help");
+        squat.addSet(8, 190);
+        squat.addSet(8, 190);
+        squat.addSet(8, 190);
 
         Workout legs = new Workout();
         legs.setName("Legs");

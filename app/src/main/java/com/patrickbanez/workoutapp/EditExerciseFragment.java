@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.patrickbanez.workoutapp.Workout.Exercise;
 import com.patrickbanez.workoutapp.Workout.Set;
@@ -18,7 +19,8 @@ public class EditExerciseFragment extends Fragment {
     private EditSetFragment[] myEditSetFragments;
 
     public EditExerciseFragment(Exercise ex) {
-        exercise = ex;
+        exercise = new Exercise();
+        exercise.setExercise(ex);
     }
 
     @Override
@@ -37,12 +39,12 @@ public class EditExerciseFragment extends Fragment {
         myEditSetFragments = new EditSetFragment[exercise.getCount()];
 
         for(int i = 0; i < exercise.getCount(); i++){
-            Set s = exercise.getSet(i);
-            myEditSetFragments[i] = new EditSetFragment(s,i+1);
+            myEditSetFragments[i] = new EditSetFragment(exercise.getSet(i), i);
         }
 
         for(int i = 0; i < exercise.getCount(); i++){
-            getChildFragmentManager().beginTransaction().replace(R.id.setFrame, myEditSetFragments[i], null).commit();
+            FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+            transaction.add(R.id.fragmentLayout, myEditSetFragments[i]).addToBackStack(null).commit();
         }
 
         return view;
