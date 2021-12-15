@@ -173,8 +173,8 @@ public class ProfileFragment extends Fragment{
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newFirst = firstNameProfile.getText().toString();
-                String newLast = lastNameProfile.getText().toString();
+                String newFirst = firstNameProfile.getText().toString().trim();
+                String newLast = lastNameProfile.getText().toString().trim();
                 if (newFirst.equals("") || newLast.equals("")) {
                     Toast.makeText(getContext(), "Please enter your first and last name",
                             Toast.LENGTH_SHORT).show();
@@ -182,7 +182,8 @@ public class ProfileFragment extends Fragment{
                 }
                 user.setFirstName(newFirst);
                 user.setLastName(newLast);
-                if (!isEmailValid(email.getText().toString())) {
+                String newEmail = email.getText().toString().trim();
+                if (!isEmailValid(newEmail)) {
                     Toast.makeText(getContext(), "Please enter your email", Toast.LENGTH_SHORT).show();
                     return;
                 }
