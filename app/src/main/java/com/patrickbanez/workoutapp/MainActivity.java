@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private UserDao mUserDao;
+//    private UserDao mUserDao;
     String[] tabNames = {"Home", "Manage Workouts", "Statistics", "Settings"};
     TextView dayText;
     ImageButton search_button;
