@@ -5,8 +5,6 @@
 
 package com.patrickbanez.workoutapp.Workout;
 
-import androidx.annotation.NonNull;
-
 import java.util.Iterator;
 import java.util.*;
 
@@ -16,12 +14,13 @@ public class Workout implements Iterable<Exercise> {
     private String workoutType;
     private String name;
     private String description;
+    private int index;
 
     public Workout() {
         this.name = "";
         description = "";
         workoutType = "";
-        exercises = new ArrayList<>();
+        exercises = new ArrayList<Exercise>();
     }
 
     public boolean addExercise(Exercise e) {
@@ -29,6 +28,16 @@ public class Workout implements Iterable<Exercise> {
             return false;
         }
         return exercises.add(e);
+    }
+
+    public void setIndex(int i){
+        index = i;
+    }
+
+    public int getIndex(){ return index; }
+
+    public void setExercise(ArrayList<Exercise> e){
+        exercises = e;
     }
 
     public boolean removeExercise(String name) {
@@ -41,12 +50,21 @@ public class Workout implements Iterable<Exercise> {
         return false;
     }
 
-    public int getSize() {
-        return exercises.size();
-    }
-
     public Exercise getExercise(int index) {
         return exercises.get(index);
+    }
+
+    public ArrayList<Exercise> getExercises(){return exercises;}
+
+    public String getExerciseNames(){
+        String exercisesName = "";
+        for(int i = 0; i < exercises.size(); i++){
+            exercisesName += (exercises.get(i)).getName();
+            if(i != exercises.size()-1){
+                exercisesName += ", ";
+            }
+        }
+        return exercisesName;
     }
 
     public void setName(String name) {
@@ -73,25 +91,37 @@ public class Workout implements Iterable<Exercise> {
         return workoutType;
     }
 
-    public int getCalories() {
+
+    //current API doesn't provide Calorie info
+    /*public int getCalories() {
         //loops through arraylist and adds all calories together and returns sum
         int calories = 0;
         for (Exercise e : exercises) {
             calories += e.getCalories();
         }
         return calories;
-    }
+    }*/
 
-    public int getDuration() {
+    //current API doesn't provide Calorie info
+    /*public int getDuration() {
         //loops through arraylist and adds all durations together and returns sum
         int duration = 0;
         for (Exercise e : exercises) {
             duration += e.getDuration();
         }
         return duration;
+    }*/
+
+    public int getCount(){return exercises.size();}
+
+    public void setWorkout(Workout w){
+        setName(w.getName());
+        setExercise(w.getExercises());
+        setDescription(w.getDescription());
+        setWorkoutType(w.getWorkoutType());
+        setIndex(w.getIndex());
     }
 
-    @NonNull
     public WorkoutIterator iterator() {
         return new WorkoutIterator(this);
     }

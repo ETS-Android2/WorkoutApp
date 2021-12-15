@@ -16,17 +16,18 @@ import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    String[] tabNames = {"Home", "Workout", "Statistics", "Settings"};
+    private UserDao mUserDao;
+    String[] tabNames = {"Home", "Manage Workouts", "Statistics", "Settings"};
     TextView dayText;
     ImageButton search_button;
     private static HomeFragment home;
-    private static WorkoutFragment workout;
+    private static ManageWorkoutsFragment manageWorkoutsFragment;
     private static StatisticsFragment statistics;
     private static SettingsFragment settings;
 
     static {
         home = new HomeFragment();
-        workout = new WorkoutFragment();
+        manageWorkoutsFragment = new ManageWorkoutsFragment();
         statistics = new StatisticsFragment();
         settings = new SettingsFragment();
     }
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             setTitle(tabNames[0]);
         }
         if (v.getId() == R.id.workoutButton) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, workout, null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.activeView, manageWorkoutsFragment, null).commit();
             setTitle(tabNames[1]);
         }
         if (v.getId() == R.id.statisticsButton) {
@@ -69,5 +70,9 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.activeView, settings, null).commit();
             setTitle(tabNames[3]);
         }
+    }
+
+    public void startWorkoutSwap(WorkoutStartFragment f){
+        getSupportFragmentManager().beginTransaction().replace(R.id.activeView, f, null).commit();
     }
 }
