@@ -235,7 +235,7 @@ public class ProfileFragment extends Fragment{
                 SharedPreferences.Editor prefEditor = sp.edit();
                 Gson gson = new Gson();
                 String json = gson.toJson(user);
-                prefEditor.putString("userData", json);
+                prefEditor.putString(String.valueOf(R.string.user_data_key), json);
                 prefEditor.commit();
 
                 initFields();
