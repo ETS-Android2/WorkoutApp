@@ -39,7 +39,7 @@ public class SettingsFragment extends Fragment {
         userPref = this.getActivity().getSharedPreferences(String.valueOf(R.string.user_sp), Context.MODE_PRIVATE);
         // Reading the saved user and creating a User object to pass to ProfileFragment
         Gson gson = new Gson();
-        String json = userPref.getString("userData", "");
+        String json = userPref.getString(String.valueOf(R.string.user_data_key), "");
         User user = (User) gson.fromJson(json, User.class);
 
         // Inflate the layout for this fragment
